@@ -6,12 +6,12 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/03 12:29:40 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/03 15:39:28 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
-
+/*
 int		init_terminal_data()
 {
 	char	*termtype;
@@ -33,17 +33,25 @@ int		init_terminal_data()
 	}
 	return (0);
 }
-
-int		main(int ac, char **av, char **env)
+*/
+int		main(int ac, char **av) //, char **env)
 {
-	av = NULL;
-	env = NULL;
+	t_term	term;
+
+	term.list = NULL;
+	av++;
 	if (ac < 2)
 	{
 		ft_putendl_fd("Error: wrong usage", 2);
 		exit (1);
 	}
-	if (!init_terminal_data())
-		printf("test\n");
+	while (*av)
+	{
+		list_push_node(&term.list, create_node(av));
+		av++;
+	}
+	print_list(&term.list);
+/*	if (!init_terminal_data())
+		printf("test\n");*/
 	return (0);
 }

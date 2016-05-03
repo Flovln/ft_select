@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/03 12:00:32 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/03 15:26:00 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,22 @@
 #include <curses.h>
 #include <signal.h>
 
+typedef struct		s_lst
+{
+	char			*content;
+//	struct s_lst	*prev;
+	struct s_lst	*next;
+}					t_lst;
+
+typedef struct		s_term
+{
+	char			*type;
+	char			buffer[2048];
+	int				result;
+	t_lst			*list;
+}					t_term;
+
+void				list_push_node(t_lst **head, t_lst *new_node);
+t_lst				*create_node(char **av);
+void				print_list(t_lst **head);
 #endif
