@@ -6,23 +6,42 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/03 15:25:56 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/03 16:16:05 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
 
-void			print_list(t_lst **head) // test
+void	print_list(t_lst **head) // test
 {
 	t_lst *tmp;
 
 	tmp = *head;
-	ft_putendl("----> list <----");
-	while (tmp)
+	ft_putendl("----> print_list <----");
+	while (tmp->next)
 	{
-		ft_putendl(tmp->content);
+		printf("cur->content |%s|\n", tmp->content);
+		printf("cur->next->content |%s|\n", tmp->next->content);
 		tmp = tmp->next;
 	}
+	ft_putchar('\n');
+}
+
+void	reverse_print(t_lst **head)
+{
+	t_lst *tmp;
+
+	tmp = *head;
+	while (tmp->next)
+		tmp = tmp->next;
+	ft_putendl("----> reverse_print_list <----");
+	while (tmp->prev)
+	{
+		printf("cur->content |%s|\n", tmp->content);
+		printf("cur->prev->content |%s|\n", tmp->prev->content);
+		tmp = tmp->prev;
+	}
+	ft_putchar('\n');
 }
 
 t_lst	*create_node(char **av)
@@ -32,7 +51,7 @@ t_lst	*create_node(char **av)
 	if (!(new = malloc(sizeof(t_lst))))
 		return (NULL);
 	new->content = ft_strdup(*av);
-	//	new->prev = 
+	new->prev = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -50,4 +69,5 @@ void	list_push_node(t_lst **head, t_lst *new_node)
 	while (cur->next)
 		cur = cur->next;
 	cur->next = new_node;
+	new_node->prev = cur;
 }

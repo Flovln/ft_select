@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/03 15:39:28 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/03 16:14:27 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int		main(int ac, char **av) //, char **env)
 {
 	t_term	term;
 
-	term.list = NULL;
 	av++;
+	term.list = NULL;
 	if (ac < 2)
 	{
 		ft_putendl_fd("Error: wrong usage", 2);
@@ -50,7 +50,8 @@ int		main(int ac, char **av) //, char **env)
 		list_push_node(&term.list, create_node(av));
 		av++;
 	}
-	print_list(&term.list);
+	print_list(&term.list); //test
+	reverse_print(&term.list);//test
 /*	if (!init_terminal_data())
 		printf("test\n");*/
 	return (0);
