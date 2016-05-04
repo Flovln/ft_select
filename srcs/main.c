@@ -6,53 +6,52 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/03 16:14:27 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/04 11:22:54 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
-/*
-int		init_terminal_data()
-{
-	char	*termtype;
-	char	termbuffer[2048];
-	int		result;
 
-	ft_bzero(termbuffer, 2048);
-	result = 0;
-	if (!(termtype = getenv("TERM")))
-		return (-1);
-	result = tgetent(termbuffer, termtype);
-	if (result < 0)
-		ft_putendl_fd("Could not access the termcap data base.\n", 2);
-	if (result == 0)
-	{
-		ft_putendl_fd("Terminal type is ", 2);
-		ft_putstr_fd(termtype, 2);
-		ft_putendl_fd(" is not defined.\n", 2);
-	}
-	return (0);
+int		my_putchar(int c)
+{
+	return (write(2, &c, 1));
 }
-*/
-int		main(int ac, char **av) //, char **env)
-{
-	t_term	term;
 
-	av++;
+int		ft_select(char **av, t_term *term)
+{
 	term.list = NULL;
-	if (ac < 2)
-	{
-		ft_putendl_fd("Error: wrong usage", 2);
-		exit (1);
-	}
+	tputs(tgetstr("cr", NULL), 1, my_putchar);
+	tputs(tgetstr("sc", NULL), 1, my_putchar);
 	while (*av)
 	{
 		list_push_node(&term.list, create_node(av));
 		av++;
 	}
-	print_list(&term.list); //test
-	reverse_print(&term.list);//test
-/*	if (!init_terminal_data())
-		printf("test\n");*/
+	//count_col(term);
+	//print
+	//stock
+	while (1)
+	{
+		//get_screen_size(term);
+		//if (!keyspot (term)
+		//		return(0);
+	}
+	return (0);
+}
+
+int		main(int ac, char **av) //, char **env)
+{
+	t_term	term;
+
+	if (ac < 2)
+	{
+		ft_putendl_fd("Error: wrong usage", 2);
+		exit (1);
+	}
+	init_term_data(term)
+	if (ac > 1)
+		ft_select(av + 1, &term);
+	//if (!reset_term_data(&term)
+	//	return (-1);
 	return (0);
 }
