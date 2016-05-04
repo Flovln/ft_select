@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/04 11:50:54 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/04 14:06:38 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@
 # include <curses.h>
 # include <signal.h>
 # include <sys/ioctl.h>
+# define BUFFER *(unsigned int *)buffer
+
+typedef enum		e_enum
+{
+	UP_KEY = 4283163,
+	DOWN_KEY = 4348699,
+	LEFT_KEY = 4479771,
+	RIGHT_KEY = 4414235,
+	ESC_KEY = 27,
+	SPACE_KEY = 32,
+	DEL_KEY = 127,
+	RET_KEY = 10,
+	SUP_KEY = 2117294875,
+	TAB_KEY = 9,
+	HOME_KEY = 4741915,
+	END_KEY = 4610843,
+	PAGE_UP_KEY = 2117425947,
+	PAGE_DOWN_KEY = 2117491483,
+	CRTL_A_KEY = 1,
+}					t_enum;
 
 typedef struct		s_lst
 {
@@ -46,10 +66,9 @@ typedef struct		s_term
 	t_lst			*list;
 }					t_term;
 
-void				list_push_node(t_lst **head, t_lst *new_node);
-t_lst				*create_node(char **av);
-int					init_term_data(t_term *term);
+int					init_term_data(t_term term);
 int					my_putchar(int c);
+void				arg_in_list(t_term *term, char **av);
 
 void				print_list(t_lst **head); //test function
 void				reverse_print(t_lst **head); //test function
