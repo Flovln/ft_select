@@ -6,13 +6,13 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/03 16:16:05 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/04 14:08:01 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
 
-void	print_list(t_lst **head) // test
+void			print_list(t_lst **head) // test
 {
 	t_lst *tmp;
 
@@ -27,7 +27,7 @@ void	print_list(t_lst **head) // test
 	ft_putchar('\n');
 }
 
-void	reverse_print(t_lst **head)
+void			reverse_print(t_lst **head) // test
 {
 	t_lst *tmp;
 
@@ -44,7 +44,7 @@ void	reverse_print(t_lst **head)
 	ft_putchar('\n');
 }
 
-t_lst	*create_node(char **av)
+static t_lst	*create_node(char **av)
 {
 	t_lst *new;
 
@@ -56,7 +56,7 @@ t_lst	*create_node(char **av)
 	return (new);
 }
 
-void	list_push_node(t_lst **head, t_lst *new_node)
+static void		list_push_node(t_lst **head, t_lst *new_node)
 {
 	t_lst *cur;
 
@@ -70,4 +70,13 @@ void	list_push_node(t_lst **head, t_lst *new_node)
 		cur = cur->next;
 	cur->next = new_node;
 	new_node->prev = cur;
+}
+
+void			arg_in_list(t_term *term, char **av)
+{
+	while (*av)
+	{
+		list_push_node(&term->list, create_node(av));
+		av++;
+	}
 }
