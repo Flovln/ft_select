@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/04 14:06:38 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/08 15:15:47 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct		s_lst
 typedef struct		s_term
 {
 //	char			buffer[2048];
-	struct termios	term_s;
+	struct termios	term_s; //contain terminal infos, will be used to change terminal's behavior
 	char			*type;
 	char			**ret;
 	int				result;
@@ -67,6 +67,7 @@ typedef struct		s_term
 }					t_term;
 
 int					init_term_data(t_term term);
+int					reset_term_data(t_term term);
 int					my_putchar(int c);
 void				arg_in_list(t_term *term, char **av);
 

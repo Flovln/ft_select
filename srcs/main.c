@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/04 14:07:44 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/08 15:17:45 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		my_putchar(int c)
 {
 	return (write(2, &c, 1));
 }
-/* test */
+/* test get and print key id */
 void		get_key()
 {
 	int		ret = 0;
@@ -34,7 +34,7 @@ int		ft_select(char **av, t_term *term)
 {
 	tputs(tgetstr("cr", NULL), 1, my_putchar); // chariot return
 	tputs(tgetstr("sc", NULL), 1, my_putchar); // save cursor position
-	arg_in_list(term, av);
+	arg_in_list(term, av); // save arguments
 	//count_col(term);
 	//print
 	//stock
@@ -62,7 +62,7 @@ int		main(int ac, char **av) //, char **env)
 		return (-1);
 	if (ac > 1)
 		ft_select(av + 1, &term);
-	//if (!reset_term_data(&term)
-	//	return (-1);
+	if (reset_term_data(term) == -1)
+		return (-1);
 	return (0);
 }
