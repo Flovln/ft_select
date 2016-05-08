@@ -6,43 +6,11 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/04 14:08:01 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/08 15:48:14 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
-
-void			print_list(t_lst **head) // test
-{
-	t_lst *tmp;
-
-	tmp = *head;
-	ft_putendl("----> print_list <----");
-	while (tmp->next)
-	{
-		printf("cur->content |%s|\n", tmp->content);
-		printf("cur->next->content |%s|\n", tmp->next->content);
-		tmp = tmp->next;
-	}
-	ft_putchar('\n');
-}
-
-void			reverse_print(t_lst **head) // test
-{
-	t_lst *tmp;
-
-	tmp = *head;
-	while (tmp->next)
-		tmp = tmp->next;
-	ft_putendl("----> reverse_print_list <----");
-	while (tmp->prev)
-	{
-		printf("cur->content |%s|\n", tmp->content);
-		printf("cur->prev->content |%s|\n", tmp->prev->content);
-		tmp = tmp->prev;
-	}
-	ft_putchar('\n');
-}
 
 static t_lst	*create_node(char **av)
 {
@@ -51,6 +19,8 @@ static t_lst	*create_node(char **av)
 	if (!(new = malloc(sizeof(t_lst))))
 		return (NULL);
 	new->content = ft_strdup(*av);
+	new->len = ft_strlen(new->content);
+	new->select = 0;
 	new->prev = NULL;
 	new->next = NULL;
 	return (new);

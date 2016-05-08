@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/08 15:17:45 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/08 15:42:27 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ int		ft_select(char **av, t_term *term)
 		//if (!keyspot (term)
 		//		return(0);
 		get_key();
+		print_list(&term->list);//test
 	}
 	return (0);
 }
 
-int		main(int ac, char **av) //, char **env)
+int		main(int ac, char **av)
 {
 	t_term	term;
 

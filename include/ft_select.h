@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/08 15:15:47 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/08 15:48:06 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ typedef enum		e_enum
 typedef struct		s_lst
 {
 	char			*content;
-//	int				len;
+	int				len;
 //	int				line;
-//	int				select;
+	int				select;
 	struct s_lst	*prev;
 	struct s_lst	*next;
 }					t_lst;
