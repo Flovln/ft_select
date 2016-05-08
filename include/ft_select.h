@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/08 15:48:06 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/08 18:22:01 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_lst
 {
 	char			*content;
 	int				len;
-//	int				line;
+	int				line_flag;
 	int				select;
 	struct s_lst	*prev;
 	struct s_lst	*next;
@@ -70,6 +70,8 @@ int					init_term_data(t_term term);
 int					reset_term_data(t_term term);
 int					my_putchar(int c);
 void				arg_in_list(t_term *term, char **av);
+void				print_args(t_lst *node);
+int					get_keycode(t_term *term);
 
 void				print_list(t_lst **head); //test function
 void				reverse_print(t_lst **head); //test function

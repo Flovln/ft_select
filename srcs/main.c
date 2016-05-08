@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/08 15:42:27 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/08 18:23:50 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,20 @@ int		my_putchar(int c)
 {
 	return (write(2, &c, 1));
 }
-/* test get and print key id */
-void		get_key()
-{
-	int		ret = 0;
-	char	buffer[5];
-
-	ft_bzero(buffer, 5);
-	read(0, buffer, 4);
-
-	printf("keycode = |%u|\n", BUFFER); //test
-	ret = tgetnum(buffer);
-	printf("ret = |%d|\n", ret); //test
-}
 
 int		ft_select(char **av, t_term *term)
 {
 	tputs(tgetstr("cr", NULL), 1, my_putchar); // chariot return
-	tputs(tgetstr("sc", NULL), 1, my_putchar); // save cursor position
+	tputs(tgetstr("sc", NULL), 1, my_putchar); // save cursor's current position
 	arg_in_list(term, av); // save arguments
+	print_args(term->list); //print when we first get in the program
 	//count_col(term);
-	//print
 	//stock
 	while (1)
 	{
 		//get_screen_size(term);
-		//if (!keyspot (term)
-		//		return(0);
-		get_key();
-		print_list(&term->list);//test
+		if(get_keycode(term) == 1)
+			break ;
 	}
 	return (0);
 }

@@ -6,11 +6,20 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/08 15:48:14 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/08 17:01:48 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
+
+void			print_args(t_lst *node)
+{
+	while (node)
+	{
+		ft_putendl(node->content);
+		node = node->next;
+	}
+}
 
 static t_lst	*create_node(char **av)
 {
