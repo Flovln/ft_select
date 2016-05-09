@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/08 18:23:50 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 10:03:18 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		ft_select(char **av, t_term *term)
 	while (1)
 	{
 		//get_screen_size(term);
+		print_list(&term->list);//test
 		if(get_keycode(term) == 1)
 			break ;
 	}
