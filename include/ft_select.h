@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 12:50:44 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 16:07:22 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void				manage_keycodes(t_term *term, char buffer[5]);
 void				do_underline(char *str);
 void				do_reverse_video(char *str);
 void				do_underline_reverse(char *str);
+void				list_remove_node(t_term *term);
 
 void				print_list(t_lst **head); //test function
 void				reverse_print(t_lst **head); //test function
