@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 17:19:15 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 17:31:27 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,21 @@ typedef enum		e_enum
 	SPACE_KEY = 32,
 	DEL_KEY = 127,
 	RET_KEY = 10,
-	SUP_KEY = 2117294875,
-	TAB_KEY = 9,
-	PAGE_UP_KEY = 2117425947,
-	PAGE_DOWN_KEY = 2117491483,
-	CRTL_A_KEY = 1,
 }					t_enum;
 
 typedef struct		s_lst
 {
 	char			*content;
 	int				len;
-	int				flag; // arrows
-	int				select; // space key
+	int				flag;
+	int				select;
 	struct s_lst	*prev;
 	struct s_lst	*next;
 }					t_lst;
 
 typedef struct		s_term
 {
-	struct termios	term_s; //contain terminal infos, will be used to change terminal's behavior
+	struct termios	term_s;
 	char			*type;
 	char			**ret;
 	int				result;
@@ -71,9 +66,7 @@ int					reset_term_data(t_term term);
 int					my_putchar(int c);
 void				arg_in_list(t_term *term, char **av);
 void				manage_keycodes(t_term *term, char buffer[5]);
-void				do_underline(char *str);
-void				do_reverse_video(char *str);
-void				do_underline_reverse(char *str);
+void				do_display(t_lst *node);
 int					list_remove_node(t_lst **head);
 
 void				print_list(t_lst **head); //test function
