@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 15:32:53 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 09:48:27 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 10:35:18 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	print_list(t_lst **head)
 	while (tmp)
 	{
 		printf("cur->content |%s|  ", tmp->content);
-		printf("cur->line_flag |%d|\n", tmp->line_flag);
+		printf(" select |%d|  ", tmp->select);
+		printf("flag |%d|\n", tmp->line_flag);
 		tmp = tmp->next;
 	}
 	ft_putchar('\n');
