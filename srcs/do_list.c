@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 10:52:33 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 12:47:15 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@ void			print_args(t_lst *node)
 {
 	while (node)
 	{
-		ft_putendl(node->content);
+		if (node->select == 1 && node->flag == 1)
+			do_underline_reverse(node->content);
+		else if (node->flag == 1)
+			do_underline(node->content);
+		else if (node->select == 1)
+			do_reverse_video(node->content);
+		else
+			ft_putendl(node->content);
 		node = node->next;
 	}
 }

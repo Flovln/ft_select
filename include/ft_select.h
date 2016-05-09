@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 10:51:56 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 12:49:11 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@
 # include <curses.h>
 # include <signal.h>
 # include <sys/ioctl.h>
+
 # define BUFFER *(unsigned int *)buffer
+# define BASIC "\033[00m"
+# define YELLOW "\033[1;33m"
 
 typedef enum		e_enum
 {
@@ -56,7 +59,6 @@ typedef struct		s_lst
 
 typedef struct		s_term
 {
-//	char			buffer[2048];
 	struct termios	term_s; //contain terminal infos, will be used to change terminal's behavior
 	char			*type;
 	char			**ret;
@@ -72,6 +74,9 @@ int					my_putchar(int c);
 void				arg_in_list(t_term *term, char **av);
 void				print_args(t_lst *node);
 void				manage_keycodes(t_term *term, char buffer[5]);
+void				do_underline(char *str);
+void				do_reverse_video(char *str);
+void				do_underline_reverse(char *str);
 
 void				print_list(t_lst **head); //test function
 void				reverse_print(t_lst **head); //test function

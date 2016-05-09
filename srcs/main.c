@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 10:44:44 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 12:39:21 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static int		get_keycode(t_term *term)
 	if (BUFFER == ESC_KEY)
 		return (1);
 	manage_keycodes(term, buffer);
-	/*test to get key value */
-	printf("keycode = |%u|\n", BUFFER); //test
 	clear_window();
 	print_args(term->list); // print the new list each time an event occurs
 	return (0);
@@ -50,15 +48,16 @@ static int		ft_select(char **av, t_term *term)
 	while (1)
 	{
 		//get_screen_size(term);
-		print_list(&term->list);//test
+	//	print_list(&term->list);//test
 		if(get_keycode(term) == 1)
-			break ;
+			return (1);
 	}
 	return (0);
 }
 
 int		main(int ac, char **av)
 {
+	printf("test\n");//test
 	t_term	term;
 
 	term.list = NULL;
