@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 12:39:21 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 13:12:03 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static int		ft_select(char **av, t_term *term)
 
 int		main(int ac, char **av)
 {
-	printf("test\n");//test
 	t_term	term;
 
 	term.list = NULL;

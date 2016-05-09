@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 12:49:11 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 12:50:44 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ typedef enum		e_enum
 	RET_KEY = 10,
 	SUP_KEY = 2117294875,
 	TAB_KEY = 9,
-	HOME_KEY = 4741915,
-	END_KEY = 4610843,
 	PAGE_UP_KEY = 2117425947,
 	PAGE_DOWN_KEY = 2117491483,
 	CRTL_A_KEY = 1,

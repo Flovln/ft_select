@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 18:08:58 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 11:18:41 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 13:18:47 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void		move_down(t_term *term)
 	tmp = term->list;
 	while (tmp->flag != 1)
 		tmp = tmp->next;
+	tmp->flag = 0;
 	if (tmp->next)
-	{
-		tmp->flag = 0;
 		tmp->next->flag = 1;
-	}
+	else
+		term->list->flag = 1;
 }
 
 static void		move_up(t_term *term)
@@ -48,10 +48,14 @@ static void		move_up(t_term *term)
 	tmp = term->list;
 	while (tmp->flag != 1)
 		tmp = tmp->next;
+	tmp->flag = 0;
 	if (tmp->prev)
-	{
-		tmp->flag = 0;
 		tmp->prev->flag = 1; 
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->flag = 1; 
 	}
 }
 
