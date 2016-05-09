@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 10:39:46 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 10:51:56 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_lst
 {
 	char			*content;
 	int				len;
-	int				line_flag; // arrows
+	int				flag; // arrows
 	int				select; // space key
 	struct s_lst	*prev;
 	struct s_lst	*next;

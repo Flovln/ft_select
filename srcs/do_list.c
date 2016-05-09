@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 10:00:56 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 10:52:33 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_lst	*create_node(char **av)
 	new->content = ft_strdup(*av);
 	new->len = ft_strlen(new->content);
 	/* use to flag the current node we are on with cursor */
-	new->line_flag = 0;
+	new->flag = 0;
 	/* first node will be one, then when we move to the second node, the 1st will 
 	 * be 0 and then the 2nd will take value 1, etc..
 	 */
@@ -47,7 +47,7 @@ static void		list_push_node(t_lst **head, t_lst *new_node)
 	if (!*head)
 	{
 		*head = new_node;
-		(*head)->line_flag = 1;
+		(*head)->flag = 1;
 		return ;
 	}
 	cur = *head;
