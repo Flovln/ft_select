@@ -6,48 +6,47 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 16:14:55 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 17:18:51 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
 
-void			print_args(t_lst *node)
+static void		del_prev_next(t_lst *tmp)
 {
-	while (node)
+	if (tmp->next)
 	{
-		if (node->select == 1 && node->flag == 1)
-			do_underline_reverse(node->content);
-		else if (node->flag == 1)
-			do_underline(node->content);
-		else if (node->select == 1)
-			do_reverse_video(node->content);
-		else
-			ft_putendl_fd(node->content, 2);
-		node = node->next;
+		tmp->next->flag = 1;
+		tmp->next->prev = tmp->prev;
+	}
+	if (tmp->prev)
+	{
+		if (!tmp->next)
+			tmp->prev->flag = 1;
+		tmp->prev->next = tmp->next;
 	}
 }
-void			list_remove_node(t_term *term)
+
+int				list_remove_node(t_lst **head)
 {
 	t_lst *tmp;
 
-	if (term->list == term->list->next)
+	tmp = *head;
+	while (tmp->flag != 1)
+		tmp = tmp->next;
+	tmp->flag = 0;
+	if (*head == tmp)
 	{
-		free(term->list);
-		// return;
-	}
-	tmp = term->list;
-	if (term->list->line == 1)
-		term->list = tmp->next;
-//	tmp->flag = 0;
-	if (tmp->prev)
-	{
-		tmp->prev->next = tmp->next;
-		tmp->next->prev = tmp->prev;
+		if (!tmp->next)
+			return (1);
+		*head = tmp->next;
+		tmp->next = *head;
 		tmp->next->flag = 1;
 	}
+	del_prev_next(tmp);
 	ft_strdel(&(tmp->content));
 	free(tmp);
+	return (0);
 }
 
 static t_lst	*create_node(char **av)

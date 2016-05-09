@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 18:08:58 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 16:07:16 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 17:07:05 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ static void		do_select(t_term *term)
 	tmp = term->list;
 	while (tmp->flag != 1)
 		tmp = tmp->next;
+	tmp->flag = 0;
 	if (tmp->select == 0)
 		tmp->select = 1;
 	else
 		tmp->select = 0;
 	if (tmp->next)
-	{
-		tmp->flag = 0;
 		tmp->next->flag = 1;
-	}
+	else
+		term->list->flag = 1;
 }
 
 static void		move_down(t_term *term)
@@ -71,7 +71,13 @@ void			manage_keycodes(t_term *term, char buffer[5])
 	else if (BUFFER == SPACE_KEY)
 		do_select(term);
 	else if (BUFFER == DEL_KEY) 
-		list_remove_node(term);
+	{
+		if (list_remove_node(&term->list) == 1)
+		{
+			reset_term_data(*term);
+			exit (0);
+		}
+	}
 /*  else if (BUFFER == LEFT_KEY)
 	//move left
 	else if (BUFFER == RIGHT_KEY)*/

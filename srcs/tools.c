@@ -6,11 +6,16 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 15:32:53 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 10:52:09 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 17:12:03 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
+
+int		my_putchar(int c)
+{
+	return (write(2, &c, 1));
+}
 
 /* temporary file stocking tools function for testing while coding */
 

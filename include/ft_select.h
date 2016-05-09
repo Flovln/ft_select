@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 16:07:22 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/09 17:19:15 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,11 @@ int					init_term_data(t_term term);
 int					reset_term_data(t_term term);
 int					my_putchar(int c);
 void				arg_in_list(t_term *term, char **av);
-void				print_args(t_lst *node);
 void				manage_keycodes(t_term *term, char buffer[5]);
 void				do_underline(char *str);
 void				do_reverse_video(char *str);
 void				do_underline_reverse(char *str);
-void				list_remove_node(t_term *term);
+int					list_remove_node(t_lst **head);
 
 void				print_list(t_lst **head); //test function
 void				reverse_print(t_lst **head); //test function
