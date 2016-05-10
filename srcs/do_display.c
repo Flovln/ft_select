@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_display.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fviolin <marvin@41.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 11:04:56 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 17:31:47 by fviolin          ###   ########.fr       */
+/*   Created: 1016/05/09 11:04:56 by fviolin           #+#    #+#             */
+/*   Updated: 2016/05/10 12:01:07 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 static void		do_underline(char *str)
 {
 	tputs(tgetstr("us", NULL), 1, my_putchar);
-	ft_putstr_fd(YELLOW, 2);
-	ft_putendl_fd(str, 2);
-	ft_putstr_fd(BASIC, 2);
+	ft_putstr_fd(YELLOW, 1);
+	ft_putendl_fd(str, 1);
+	ft_putstr_fd(BASIC, 1);
 	tputs(tgetstr("ue", NULL), 1, my_putchar);
 }
 
 static void		do_reverse_video(char *str)
 {
 	tputs(tgetstr("so", NULL), 1, my_putchar);
-	ft_putstr_fd(YELLOW, 2);
-	ft_putendl_fd(str, 2);
-	ft_putstr_fd(BASIC, 2);
+	ft_putstr_fd(YELLOW, 1);
+	ft_putendl_fd(str, 1);
+	ft_putstr_fd(BASIC, 1);
 	tputs(tgetstr("se", NULL), 1, my_putchar);
 }
 
@@ -34,10 +34,10 @@ static void		do_underline_reverse(char *str)
 {
 	tputs(tgetstr("us", NULL), 1, my_putchar);
 	tputs(tgetstr("so", NULL), 1, my_putchar);
-	ft_putstr_fd(YELLOW, 2);
-	ft_putstr_fd(YELLOW, 2);
-	ft_putendl_fd(str, 2);
-	ft_putstr_fd(BASIC, 2);
+	ft_putstr_fd(YELLOW, 1);
+	ft_putstr_fd(YELLOW, 1);
+	ft_putendl_fd(str, 1);
+	ft_putstr_fd(BASIC, 1);
 	tputs(tgetstr("se", NULL), 1, my_putchar);
 	tputs(tgetstr("ue", NULL), 1, my_putchar);
 }
@@ -51,5 +51,5 @@ void			do_display(t_lst *node)
 	else if (node->select == 1)
 		do_reverse_video(node->content);
 	else
-		ft_putendl_fd(node->content, 2);
+		ft_putendl_fd(node->content, 1);
 }

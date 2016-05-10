@@ -6,13 +6,13 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 17:31:20 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/10 11:52:14 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
 
-static void		clear_window()
+void			clear_window()
 {
 	tputs(tgetstr("rc", NULL), 1, my_putchar); //restores cursor's saved position
 	tputs(tgetstr("cd", NULL), 1, my_putchar); //erases until screen's end
@@ -63,6 +63,7 @@ int		main(int ac, char **av)
 	t_term	term;
 
 	term.list = NULL;
+	term.list_select = NULL;
 	if (ac < 2)
 	{
 		ft_putendl_fd("Error: wrong usage", 2);
