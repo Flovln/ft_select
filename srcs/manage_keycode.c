@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/* 	 manage_keycode.c                                   :+:      :+:    :+:   */
+/*   manage_keycode.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/08 18:08:58 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/10 14:12:34 by fviolin          ###   ########.fr       */
+/*   Created: 2016/05/10 16:23:41 by fviolin           #+#    #+#             */
+/*   Updated: 2016/05/10 16:23:56 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void			manage_keycodes(t_term *term, char buffer[5])
 	manage_arrows(term, buffer);
 	if (BUFFER == SPACE_KEY)
 		do_select(term);
-	else if (BUFFER == DEL_KEY) 
+	else if (BUFFER == DEL_KEY)
 	{
 		if (list_remove_node(&term->list) == 1)
 		{
 			reset_term_data(*term);
-			exit (0);
+			exit(0);
 		}
 	}
 	else if (BUFFER == RET_KEY)
