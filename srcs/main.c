@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/10 11:52:14 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/10 12:14:06 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int		main(int ac, char **av)
 	t_term	term;
 
 	term.list = NULL;
-	term.list_select = NULL;
 	if (ac < 2)
 	{
 		ft_putendl_fd("Error: wrong usage", 2);

@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 18:08:58 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/10 12:02:19 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/10 14:12:34 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,53 +30,51 @@ static void		do_select(t_term *term)
 		term->list->flag = 1;
 }
 
-static t_select	*create_node_select(char *str)
+static void		stock_res(t_term *term)
 {
-	t_select *new;
+	t_lst	*tmp;
+	int		i;
 
-	if (!(new = malloc(sizeof(t_select))))
-		return (NULL);
-	new->content = ft_strdup(str);
-	new->next = NULL;
-	return (new);
-}
-
-static void		list_push_select(t_select **head, t_select *new_node)
-{
-	t_select *cur;
-
-	if (!*head)
+	i = 0;
+	tmp = term->list;
+	while (tmp)
 	{
-		*head = new_node;
-		return ;
+		if (tmp->select == 1)
+		{
+			term->ret_key[i] = ft_strdup(tmp->content);
+			i++;
+		}
+		tmp = tmp->next;
 	}
-	cur = *head;
-	while (cur->next)
-		cur = cur->next;
-	cur->next = new_node;
+	term->ret_key[i] = 0;
 }
 
 static void		validate_selection(t_term *term)
 {
-	t_lst		*tmp;
-	t_select	*cur;
+	t_lst	*tmp;
+	int		count;
+	int		i;
 
+	count = 0;
+	i = 0;
 	tmp = term->list;
-	cur = term->list_select;
 	while (tmp)
 	{
 		if (tmp->select == 1)
-			list_push_select(&term->list_select, create_node_select(tmp->content));
+			count++;
 		tmp = tmp->next;
 	}
-	clear_window();
+	term->ret_key = (char **)malloc(sizeof(char *) * (count + 1));
+	stock_res(term);
 	reset_term_data(*term);
-	while (cur)
+	clear_window();
+	while (i < count - 1)
 	{
-		ft_putstr_fd(cur->content, 1);
-		ft_putchar_fd(' ', 1);
-		cur = cur->next;
+		ft_putstr_fd(term->ret_key[i], 1);
+		ft_putchar(' ');
+		i++;
 	}
+	ft_putendl_fd(term->ret_key[i], 1);
 	exit(0);
 }
 

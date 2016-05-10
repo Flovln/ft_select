@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/10 12:08:06 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/10 13:34:12 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ typedef struct		s_lst
 	struct s_lst	*next;
 }					t_lst;
 
-typedef struct		s_select
-{
-	char			*content;
-	struct s_select	*next;
-}					t_select;
-
 typedef struct		s_term
 {
 	struct termios	term_s;
@@ -65,7 +59,6 @@ typedef struct		s_term
 	int				col_nb;
 	int				row_nb;
 	t_lst			*list;
-	t_select		*list_select;
 }					t_term;
 
 int					init_term_data(t_term term);
