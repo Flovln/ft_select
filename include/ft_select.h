@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 17:31:27 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/10 09:50:09 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void				arg_in_list(t_term *term, char **av);
 void				manage_keycodes(t_term *term, char buffer[5]);
 void				do_display(t_lst *node);
 int					list_remove_node(t_lst **head);
+void				manage_arrows(t_term *term, char buffer[5]);
 
 void				print_list(t_lst **head); //test function
 void				reverse_print(t_lst **head); //test function
