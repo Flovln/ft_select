@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 15:32:53 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 17:12:03 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/12 17:55:36 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		my_putchar(int c)
 
 /* temporary file stocking tools function for testing while coding */
 
-void	print_list(t_lst **head)
+void	print_list_test(t_lst **head)
 {
 	t_lst *tmp;
 

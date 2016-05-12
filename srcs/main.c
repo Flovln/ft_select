@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/11 16:11:52 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/12 17:56:51 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			clear_window()
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
 }
 
-static void		print_args(t_lst *node)
+void			print_list(t_lst *node)
 {
 	while (node)
 	{
@@ -38,7 +38,7 @@ static int		get_keycode(t_term *term)
 		return (1);
 	manage_keycodes(term, buffer);
 	clear_window();
-	print_args(term->list); // print the new list each time an event occurs
+	print_list(term->list);
 	return (0);
 }
 
@@ -46,9 +46,9 @@ static int		ft_select(char **av, t_term *term)
 {
 	tputs(tgetstr("cr", NULL), 1, my_putchar); // chariot return
 	tputs(tgetstr("sc", NULL), 1, my_putchar); // save cursor's current position
-	arg_in_list(term, av); // save arguments
+	arg_in_list(term, av);
 	clear_window();
-	print_args(term->list); //print when we first get in the program
+	print_list(term->list);
 	while (1)
 	{
 		//get_screen_size(term);
@@ -60,20 +60,20 @@ static int		ft_select(char **av, t_term *term)
 
 int		main(int ac, char **av)
 {
-	t_term	term;
+	t_term	*term;
 
-	term.list = NULL;
+	term = init_struct();
+	manage_signals();
 	if (ac < 2)
 	{
 		ft_putendl_fd("Error: wrong usage", 2);
 		exit (1);
 	}
-	manage_signals();
-	if (init_term_data(&term) == -1)
+	if (init_term_data(term) == -1)
 		return (-1);
 	if (ac > 1)
-		ft_select(av + 1, &term);
-	if (reset_term_data(&term) == -1)
+		ft_select(av + 1, term);
+	if (reset_term_data(term) == -1)
 		return (-1);
 	return (0);
 }

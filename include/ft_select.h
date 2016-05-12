@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/11 15:14:02 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/12 17:53:39 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ typedef struct		s_term
 	int				result;
 	int				col_nb;
 	int				row_nb;
-	struct termios	term_s;
+	struct termios	*term_s;
+	struct termios 	*term_cpy;
 	t_lst			*list;
 }					t_term;
 
@@ -70,10 +71,7 @@ int					list_remove_node(t_lst **head);
 void				manage_arrows(t_term *term, char buffer[5]);
 void				clear_window();
 void				manage_signals(void);
-void				do_sig_num(int sig);
-
-void				ft_catch(int i);//test
-void				ft_signal(void);//test
-void				print_list(t_lst **head); //test function
-void				reverse_print(t_lst **head); //test function
+void				figure_sig_id(int id);
+t_term				*init_struct(void);
+void				print_list(t_lst *node);
 #endif
