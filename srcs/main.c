@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/12 17:56:51 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 13:28:03 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@ void			clear_window()
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
 }
 
-void			print_list(t_lst *node)
+void			print_list(t_term *term)
 {
-	while (node)
+	t_lst *tmp;
+
+	tmp = term->list;
+//	get_size_info(term);
+	while (tmp)
 	{
-		do_display(node);
-		node = node->next;
+//		display_columns(term, col_pos, i);
+		do_display(tmp);
+		tmp = tmp->next;
 	}
 }
 
@@ -38,7 +43,7 @@ static int		get_keycode(t_term *term)
 		return (1);
 	manage_keycodes(term, buffer);
 	clear_window();
-	print_list(term->list);
+	print_list(term);
 	return (0);
 }
 
@@ -48,10 +53,9 @@ static int		ft_select(char **av, t_term *term)
 	tputs(tgetstr("sc", NULL), 1, my_putchar); // save cursor's current position
 	arg_in_list(term, av);
 	clear_window();
-	print_list(term->list);
+	print_list(term);
 	while (1)
 	{
-		//get_screen_size(term);
 		if (get_keycode(term) == 1)
 			return (1);
 	}

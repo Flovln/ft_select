@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/12 18:05:02 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 13:25:06 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void		do_sig_cont(t_term *term)
 	signal(SIGTSTP, figure_sig_id);
 	term->term_s->c_lflag &= ~(ECHO | ICANON);
 	tcsetattr(0, TCSANOW, term->term_s);
-//	if (!(term_name = getenv("TERM")))
+	//	if (!(term_name = getenv("TERM")))
 	tputs(tgetstr("ti", NULL), 1, my_putchar);
 	tputs(tgetstr("vi", NULL), 1, my_putchar);
-	print_list(term->list);
+	print_list(term);
 }
 
 void		figure_sig_id(int id)
@@ -55,4 +55,12 @@ void		figure_sig_id(int id)
 		ft_putendl_fd("ctr -c", 2);//test
 		sleep(1);
 	}
+}
+
+void        manage_signals(void)
+{
+	signal(SIGTSTP, figure_sig_id); //ctr -z
+	signal(SIGCONT, figure_sig_id); //reprise du processus -> fg
+	signal(SIGINT, figure_sig_id); //ctr -c
+	signal(SIGQUIT, figure_sig_id); //ctrl -\ -> kill
 }
