@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/04 11:21:46 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/12 18:00:09 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 13:40:26 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_term		*init_struct(void)
 	if (!(term = (t_term *)malloc(sizeof(t_term))))
 		return (NULL);
 	term->ret_key = NULL;
-	term->result = 0;
 	term->col_nb = 0;
 	term->row_nb = 0;
 	term->term_s = NULL;

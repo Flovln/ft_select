@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/13 11:59:01 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 13:39:33 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct		s_lst
 typedef struct		s_term
 {
 	char			**ret_key;
-	int				result;
 	int				col_nb;
 	int				row_nb;
 	int				elem_nb;
