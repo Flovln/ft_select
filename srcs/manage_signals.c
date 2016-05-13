@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/13 13:36:37 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 13:37:44 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		do_sig_stop()
 //void		do_sig_cont(t_term *term)
 void		do_sig_cont()
 {
-	char *term_name;
+	char	*term_name;
 	t_term	*term;
 
 	term_name = NULL;
@@ -63,12 +63,3 @@ void		figure_sig_id(int id)
 	}
 }
 */
-void        manage_signals(void)
-{
-//	signal(SIGTSTP, figure_sig_id); //ctr -z
-//	signal(SIGCONT, figure_sig_id); //reprise du processus -> fg
-	signal(SIGTSTP, do_sig_stop); //ctr -z
-	signal(SIGCONT, do_sig_cont); //reprise du processus -> fg
-//	signal(SIGINT, figure_sig_id); //ctr -c
-//	signal(SIGQUIT, figure_sig_id); //ctrl -\ -> kill
-}
