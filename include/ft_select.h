@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/12 17:53:39 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 11:59:01 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ typedef struct		s_term
 	int				result;
 	int				col_nb;
 	int				row_nb;
+	int				elem_nb;
+	int				max_len;
+	struct winsize	win;
 	struct termios	*term_s;
 	struct termios 	*term_cpy;
 	t_lst			*list;
@@ -73,5 +76,7 @@ void				clear_window();
 void				manage_signals(void);
 void				figure_sig_id(int id);
 t_term				*init_struct(void);
-void				print_list(t_lst *node);
+void				print_list(t_term *term);
+int					display_columns(t_term *term, int col_pos, int i);
+void				get_size_info(t_term *term);
 #endif
