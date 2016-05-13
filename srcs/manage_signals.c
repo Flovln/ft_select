@@ -6,16 +6,19 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/13 13:25:06 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 13:36:37 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
 
-void		do_sig_stop(t_term *term)
+//void		do_sig_stop(t_term *term)
+void		do_sig_stop()
 {
 	char	cp[2];
+	t_term	*term;
 
+	term = init_struct();
 	cp[0] = term->term_s->c_cc[VSUSP];
 	cp[1] = '\0';
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
@@ -26,20 +29,23 @@ void		do_sig_stop(t_term *term)
 	ioctl(0, TIOCSTI, cp);
 }
 
-void		do_sig_cont(t_term *term)
+//void		do_sig_cont(t_term *term)
+void		do_sig_cont()
 {
 	char *term_name;
+	t_term	*term;
 
 	term_name = NULL;
-	signal(SIGTSTP, figure_sig_id);
+	term = init_struct();
+	signal(SIGTSTP, do_sig_stop);
+//	signal(SIGTSTP, figure_sig_id);
 	term->term_s->c_lflag &= ~(ECHO | ICANON);
 	tcsetattr(0, TCSANOW, term->term_s);
-	//	if (!(term_name = getenv("TERM")))
 	tputs(tgetstr("ti", NULL), 1, my_putchar);
 	tputs(tgetstr("vi", NULL), 1, my_putchar);
 	print_list(term);
 }
-
+/*
 void		figure_sig_id(int id)
 {
 	t_term *term;
@@ -56,11 +62,13 @@ void		figure_sig_id(int id)
 		sleep(1);
 	}
 }
-
+*/
 void        manage_signals(void)
 {
-	signal(SIGTSTP, figure_sig_id); //ctr -z
-	signal(SIGCONT, figure_sig_id); //reprise du processus -> fg
-	signal(SIGINT, figure_sig_id); //ctr -c
-	signal(SIGQUIT, figure_sig_id); //ctrl -\ -> kill
+//	signal(SIGTSTP, figure_sig_id); //ctr -z
+//	signal(SIGCONT, figure_sig_id); //reprise du processus -> fg
+	signal(SIGTSTP, do_sig_stop); //ctr -z
+	signal(SIGCONT, do_sig_cont); //reprise du processus -> fg
+//	signal(SIGINT, figure_sig_id); //ctr -c
+//	signal(SIGQUIT, figure_sig_id); //ctrl -\ -> kill
 }
