@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/04 11:21:46 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/13 13:40:26 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 13:47:23 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_term		*init_struct(void)
 
 int			init_term_data(t_term *term)
 {
-	struct winsize	win;
 	struct termios	*term_s;
 	struct termios	*term_cpy;
 
@@ -50,9 +49,9 @@ int			init_term_data(t_term *term)
 	term->term_s->c_lflag &= ~(ECHO | ICANON);
 	term->term_s->c_cc[VMIN] = 1;
 	term->term_s->c_cc[VTIME] = 0;
-	ioctl(0, TIOCGWINSZ, &win);
-	term->col_nb = win.ws_col;
-	term->row_nb = win.ws_row;
+	ioctl(0, TIOCGWINSZ, &(term->win));
+//	term->col_nb = win.ws_col;
+//	term->row_nb = win.ws_row;
 	if (tcsetattr(0, 0, term->term_s) == -1)
 		return (-1);
 	tputs(tgetstr("vi", NULL), 1, my_putchar);
