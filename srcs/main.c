@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/13 13:28:03 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/13 13:52:27 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,20 @@ void			clear_window()
 
 void			print_list(t_term *term)
 {
-	t_lst *tmp;
+	t_lst 	*tmp;
+	int		i;
+	int		col_pos;
 
 	tmp = term->list;
-//	get_size_info(term);
+	i = 0;
+	col_pos = -1;
+	get_size_info(term);
 	while (tmp)
 	{
 //		display_columns(term, col_pos, i);
 		do_display(tmp);
 		tmp = tmp->next;
+		i++;
 	}
 }
 
