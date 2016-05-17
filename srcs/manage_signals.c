@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 12:36:23 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 13:35:32 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void		do_sig_cont()
 	term_name = NULL;
 	term = init_struct();
 	signal(SIGTSTP, do_sig_stop);
-//	signal(SIGTSTP, figure_sig_id);
 	term->term_s->c_lflag &= ~(ECHO | ICANON);
 	tcsetattr(0, TCSANOW, term->term_s);
 	tputs(tgetstr("ti", NULL), 1, my_putchar);
@@ -53,7 +52,7 @@ void		do_sig_int()
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
 	tputs(tgetstr("ve", NULL), 1, my_putchar);
 	tputs(tgetstr("te", NULL), 1, my_putchar);
-//	free_list(term);
+	free_list(term);
 	exit(0);
 }
 
