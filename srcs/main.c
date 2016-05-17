@@ -6,18 +6,11 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 14:19:47 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 15:53:04 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
-
-void			clear_window()
-{
-//	tputs(tgetstr("rc", NULL), 1, my_putchar); //restores cursor's saved position
-//	tputs(tgetstr("cd", NULL), 1, my_putchar); //erases until screen's end
-	tputs(tgetstr("cl", NULL), 1, my_putchar);
-}
 
 void			print_list(t_term *term)
 {
@@ -47,26 +40,26 @@ static int		get_keycode(t_term *term)
 	if (BUFFER == ESC_KEY)
 		return (1);
 	manage_keycodes(term, buffer);
-	clear_window();
-	print_list(term);
 	return (0);
 }
 
 static int		ft_select(char **av, t_term *term)
 {
-	tputs(tgetstr("cr", NULL), 1, my_putchar); // chariot return
-	tputs(tgetstr("sc", NULL), 1, my_putchar); // save cursor's current position
 	while (*av)
 	{
 		list_push_node(&term->list, create_node(av));
 		av++;
 	}
-	clear_window();
+	tputs(tgetstr("cl", NULL), 1, my_putchar);
+	tputs(tgetstr("sc", NULL), 1, my_putchar);
 	print_list(term);
 	while (1)
 	{
 		if (get_keycode(term) == 1)
 			return (1);
+		tputs(tgetstr("rc", NULL), 1, my_putchar);
+		tputs(tgetstr("cd", NULL), 1, my_putchar);
+		print_list(term);
 	}
 	return (0);
 }

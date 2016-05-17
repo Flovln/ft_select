@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/10 16:23:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 13:35:20 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 15:54:18 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		validate_selection(t_term *term)
 	term->ret_key = (char **)malloc(sizeof(char *) * (count + 1));
 	stock_res(term);
 	reset_term_data(term);
-	clear_window();
+	tputs(tgetstr("cl", NULL), 1, my_putchar);
 	while (i < count - 1)
 	{
 		ft_putstr_fd(term->ret_key[i], 1);
