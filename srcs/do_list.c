@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/09 17:18:51 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 12:15:53 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				list_remove_node(t_lst **head)
 	return (0);
 }
 
-static t_lst	*create_node(char **av)
+t_lst			*create_node(char **av)
 {
 	t_lst *new;
 
@@ -64,7 +64,7 @@ static t_lst	*create_node(char **av)
 	return (new);
 }
 
-static void		list_push_node(t_lst **head, t_lst *new_node)
+void			list_push_node(t_lst **head, t_lst *new_node)
 {
 	t_lst *cur;
 
@@ -79,13 +79,4 @@ static void		list_push_node(t_lst **head, t_lst *new_node)
 		cur = cur->next;
 	cur->next = new_node;
 	new_node->prev = cur;
-}
-
-void			arg_in_list(t_term *term, char **av)
-{
-	while (*av)
-	{
-		list_push_node(&term->list, create_node(av));
-		av++;
-	}
 }

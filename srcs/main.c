@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/13 13:52:27 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 12:24:16 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ static int		ft_select(char **av, t_term *term)
 {
 	tputs(tgetstr("cr", NULL), 1, my_putchar); // chariot return
 	tputs(tgetstr("sc", NULL), 1, my_putchar); // save cursor's current position
-	arg_in_list(term, av);
+	while (*av)
+	{
+		list_push_node(&term->list, create_node(av));
+		av++;
+	}
 	clear_window();
 	print_list(term);
 	while (1)

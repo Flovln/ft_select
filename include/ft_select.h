@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/13 13:39:33 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 12:14:36 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,6 @@ t_term				*init_struct(void);
 void				print_list(t_term *term);
 int					display_columns(t_term *term, int col_pos, int i);
 void				get_size_info(t_term *term);
+void				list_push_node(t_lst **head, t_lst *new_node);
+t_lst				*create_node(char **av);
 #endif

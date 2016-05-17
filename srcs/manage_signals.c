@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 12:08:17 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 12:36:23 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,10 @@ void		do_sig_int()
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
 	tputs(tgetstr("ve", NULL), 1, my_putchar);
 	tputs(tgetstr("te", NULL), 1, my_putchar);
-	//free_list
+//	free_list(term);
 	exit(0);
 }
-/*
-void		figure_sig_id(int id)
-{
-	t_term *term;
 
-	term = init_struct();
-	if (id == SIGTSTP)
-		do_sig_stop(term);
-	else if (id == SIGCONT)
-		do_sig_cont(term);
-	else if (id == SIGINT || id == SIGQUIT)
-	{
-		//free + clear list
-		ft_putendl_fd("ctr -c", 2);//test
-		sleep(1);
-	}
-}
-*/
 void        manage_signals(void)
 {
 	signal(SIGTSTP, do_sig_stop); //ctr -z
