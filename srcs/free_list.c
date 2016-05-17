@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 12:23:22 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 13:25:39 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 16:23:23 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void			free_list(t_term *term)
 		next = node->next;
 		if (node->content)
 			free(node->content);
-		node->len = 0;
 		node->flag = 0;
 		node->select = 0;
 		free(node);

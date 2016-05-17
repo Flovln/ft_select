@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 15:53:04 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 16:04:53 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			print_list(t_term *term)
 {
-	t_lst 	*tmp;
+	t_lst	*tmp;
 	int		i;
 	int		col_pos;
 
@@ -64,7 +64,7 @@ static int		ft_select(char **av, t_term *term)
 	return (0);
 }
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_term	*term;
 
@@ -73,7 +73,7 @@ int		main(int ac, char **av)
 	if (ac < 2)
 	{
 		ft_putendl_fd("Error: wrong usage", 2);
-		exit (1);
+		exit(1);
 	}
 	if (init_term_data(term) == -1)
 		return (-1);

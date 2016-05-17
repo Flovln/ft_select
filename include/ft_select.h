@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 13:19:45 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 16:23:12 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef enum		e_enum
 typedef struct		s_lst
 {
 	char			*content;
-	int				len;
 	int				flag;
 	int				select;
 	struct s_lst	*prev;
@@ -57,6 +56,7 @@ typedef struct		s_term
 	int				row_nb;
 	int				elem_nb;
 	int				max_len;
+	int				fd;
 	struct winsize	win;
 	struct termios	*term_s;
 	struct termios 	*term_cpy;

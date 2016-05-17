@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/13 11:31:42 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 15:24:33 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 16:04:14 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		list_size(t_term *term)
 {
 	int		len;
 	int		elem_nb;
-	int		max_len;	
+	int		max_len;
 	t_lst	*tmp;
 
 	elem_nb = 0;

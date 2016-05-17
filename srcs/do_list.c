@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:56:10 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 12:15:53 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 16:23:08 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ t_lst			*create_node(char **av)
 	if (!(new = malloc(sizeof(t_lst))))
 		return (NULL);
 	new->content = ft_strdup(*av);
-	new->len = ft_strlen(new->content);
 	new->flag = 0;
 	new->select = 0;
 	new->prev = NULL;

@@ -6,17 +6,18 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 15:58:02 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 16:17:05 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
 
-static void	do_sig_stop()
+static void	do_sig_stop(int sig)
 {
 	char	cp[2];
 	t_term	*term;
 
+	(void)sig;
 	term = init_struct();
 	cp[0] = term->term_s->c_cc[VSUSP];
 	cp[1] = '\0';
@@ -28,11 +29,12 @@ static void	do_sig_stop()
 	ioctl(0, TIOCSTI, cp);
 }
 
-static void	do_sig_cont()
+static void	do_sig_cont(int sig)
 {
 	char	*term_name;
 	t_term	*term;
 
+	(void)sig;
 	term_name = NULL;
 	term = init_struct();
 	signal(SIGTSTP, do_sig_stop);
@@ -43,10 +45,11 @@ static void	do_sig_cont()
 	print_list(term);
 }
 
-static void	do_sig_int()
+static void	do_sig_int(int sig)
 {
 	t_term *term;
 
+	(void)sig;
 	term = init_struct();
 	tcsetattr(0, TCSANOW, term->term_cpy);
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
@@ -56,20 +59,21 @@ static void	do_sig_int()
 	exit(0);
 }
 
-static void	resize_win()
+static void	resize_win(int sig)
 {
 	t_term *term;
 
+	(void)sig;
 	term = init_struct();
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
 	print_list(term);
 }
 
-void        manage_signals(void)
+void		manage_signals(void)
 {
-	signal(SIGTSTP, do_sig_stop); //ctr -z
-	signal(SIGCONT, do_sig_cont); //reprise du processus -> fg
-	signal(SIGINT, do_sig_int); //ctr -c
-	signal(SIGQUIT, do_sig_int); //ctrl -\ -> kill
-	signal(SIGWINCH, resize_win); //window size
+	signal(SIGTSTP, do_sig_stop);
+	signal(SIGCONT, do_sig_cont);
+	signal(SIGINT, do_sig_int);
+	signal(SIGQUIT, do_sig_int);
+	signal(SIGWINCH, resize_win);
 }

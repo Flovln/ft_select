@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/08 15:32:53 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/12 17:55:36 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 16:07:16 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,4 @@
 int		my_putchar(int c)
 {
 	return (write(2, &c, 1));
-}
-
-/* temporary file stocking tools function for testing while coding */
-
-void	print_list_test(t_lst **head)
-{
-	t_lst *tmp;
-
-	tmp = *head;
-	ft_putendl("-----> print_list <-----");
-	while (tmp)
-	{
-		printf("cur->content |%s|  ", tmp->content);
-		printf(" select |%d|  ", tmp->select);
-		printf("flag |%d|\n", tmp->flag);
-		tmp = tmp->next;
-	}
-	ft_putchar('\n');
-	ft_putendl("-----> print_list end <-----");
-	ft_putchar('\n');
-}
-
-void	reverse_print(t_lst **head)
-{
-	t_lst *tmp;
-
-	tmp = *head;
-	while (tmp->next)
-		tmp = tmp->next;
-	ft_putendl("-----> reverse_print <-----");
-	while (tmp->prev)
-	{
-		printf("cur->content |%s|\n", tmp->content);
-		printf("cur->next->content |%s|\n", tmp->next->content);
-		tmp = tmp->prev;
-	}
-	ft_putchar('\n');
-	ft_putendl("-----> reverse_print end<-----");
-	ft_putchar('\n');
 }
