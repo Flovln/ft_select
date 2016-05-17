@@ -6,11 +6,16 @@
 /*   By: fviolin <marvin@41.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1016/05/09 11:04:56 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/10 12:01:07 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 18:31:16 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
+
+int				my_putchar(int c)
+{
+	return (write(2, &c, 1));
+}
 
 static void		do_underline(char *str)
 {

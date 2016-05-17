@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/10 16:23:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 17:41:00 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 18:45:34 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ void			manage_keycodes(t_term *term, char buffer[5])
 		if (list_remove_node(&term->list) == 1)
 		{
 			reset_term_data(term);
+			free_list(term);
+			if (close(term->fd) < 0)
+				ft_putendl_fd("Close error", 2);
 			exit(0);
 		}
 	}

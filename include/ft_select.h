@@ -6,12 +6,12 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 18:19:22 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 18:35:19 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT
-# define FT_SELECT
+#ifndef FT_SELECT_H
+# define FT_SELECT_H
 
 # include "../libft/libft.h"
 # include <unistd.h>
@@ -70,7 +70,6 @@ void				manage_keycodes(t_term *term, char buffer[5]);
 void				do_display(t_lst *node);
 int					list_remove_node(t_lst **head);
 void				manage_arrows(t_term *term, char buffer[5]);
-void				clear_window();
 void				manage_signals(void);
 void				figure_sig_id(int id);
 t_term				*init_struct(void);
