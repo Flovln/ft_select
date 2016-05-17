@@ -6,11 +6,35 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 17:50:38 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 18:20:18 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
+
+static int		check_win_size(t_term *term)
+{
+	int nb_col;
+
+	if (term->row_nb == 1)
+	{
+		tputs(tgetstr("cl", NULL), 1, my_putchar);
+		ft_putendl_fd("window size too small", 1);
+		return (1);
+	}
+	nb_col = (term->elem_nb / (term->row_nb - 1));
+	if (nb_col == 0)
+		nb_col = 1;
+	if (((term->row_nb - 1) * nb_col) < term->elem_nb)
+		nb_col++;
+	if (((term->max_len + 2) * nb_col) > term->col_nb)
+	{
+		tputs(tgetstr("cl", NULL), 1, my_putchar);
+		ft_putendl_fd("window size too small", 1);
+		return (1);
+	}
+	return (0);
+}
 
 void			print_list(t_term *term)
 {
@@ -22,6 +46,8 @@ void			print_list(t_term *term)
 	i = 0;
 	col_pos = -1;
 	get_size_info(term);
+	if (check_win_size(term))
+		return ;
 	while (tmp)
 	{
 		col_pos = display_columns(term, col_pos, i);

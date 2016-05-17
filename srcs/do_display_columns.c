@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/13 11:31:42 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 16:04:14 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 18:19:54 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ int				display_columns(t_term *term, int col_pos, int i)
 	int nb_max;
 
 	j = 0;
-	nb_col = (term->elem_nb / term->win.ws_row) + 1;
+	nb_col = (term->elem_nb / (term->row_nb - 1));
+	if (nb_col == 0)
+		nb_col = 1;
+	if (((term->row_nb - 1) * nb_col) < term->elem_nb)
+		nb_col++;
 	nb_max = term->row_nb - 2;
 	if (i == 0)
 		tputs(tgetstr("rc", NULL), 1, my_putchar);

@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 16:23:12 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 18:19:22 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h> // printf for tests
 # include <term.h>
 # include <termios.h>
 # include <termcap.h>
@@ -59,7 +58,7 @@ typedef struct		s_term
 	int				fd;
 	struct winsize	win;
 	struct termios	*term_s;
-	struct termios 	*term_cpy;
+	struct termios	*term_cpy;
 	t_lst			*list;
 }					t_term;
 
