@@ -6,13 +6,12 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/13 13:37:44 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 12:08:17 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
 
-//void		do_sig_stop(t_term *term)
 void		do_sig_stop()
 {
 	char	cp[2];
@@ -29,7 +28,6 @@ void		do_sig_stop()
 	ioctl(0, TIOCSTI, cp);
 }
 
-//void		do_sig_cont(t_term *term)
 void		do_sig_cont()
 {
 	char	*term_name;
@@ -44,6 +42,19 @@ void		do_sig_cont()
 	tputs(tgetstr("ti", NULL), 1, my_putchar);
 	tputs(tgetstr("vi", NULL), 1, my_putchar);
 	print_list(term);
+}
+
+void		do_sig_int()
+{
+	t_term *term;
+
+	term = init_struct();
+	tcsetattr(0, TCSANOW, term->term_cpy);
+	tputs(tgetstr("cl", NULL), 1, my_putchar);
+	tputs(tgetstr("ve", NULL), 1, my_putchar);
+	tputs(tgetstr("te", NULL), 1, my_putchar);
+	//free_list
+	exit(0);
 }
 /*
 void		figure_sig_id(int id)
@@ -63,3 +74,10 @@ void		figure_sig_id(int id)
 	}
 }
 */
+void        manage_signals(void)
+{
+	signal(SIGTSTP, do_sig_stop); //ctr -z
+	signal(SIGCONT, do_sig_cont); //reprise du processus -> fg
+	signal(SIGINT, do_sig_int); //ctr -c
+	signal(SIGQUIT, do_sig_int); //ctrl -\ -> kill
+}
