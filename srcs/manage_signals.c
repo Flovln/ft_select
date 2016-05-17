@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 16:17:05 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 17:39:26 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	do_sig_stop(int sig)
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
 	tputs(tgetstr("ve", NULL), 1, my_putchar);
 	tputs(tgetstr("te", NULL), 1, my_putchar);
-	tcsetattr(0, TCSANOW, term->term_cpy);
+	tcsetattr(term->fd, TCSANOW, term->term_cpy);
 	signal(SIGTSTP, SIG_DFL);
-	ioctl(0, TIOCSTI, cp);
+	ioctl(term->fd, TIOCSTI, cp);
 }
 
 static void	do_sig_cont(int sig)
@@ -39,7 +39,7 @@ static void	do_sig_cont(int sig)
 	term = init_struct();
 	signal(SIGTSTP, do_sig_stop);
 	term->term_s->c_lflag &= ~(ECHO | ICANON);
-	tcsetattr(0, TCSANOW, term->term_s);
+	tcsetattr(term->fd, TCSANOW, term->term_s);
 	tputs(tgetstr("ti", NULL), 1, my_putchar);
 	tputs(tgetstr("vi", NULL), 1, my_putchar);
 	print_list(term);
@@ -51,11 +51,13 @@ static void	do_sig_int(int sig)
 
 	(void)sig;
 	term = init_struct();
-	tcsetattr(0, TCSANOW, term->term_cpy);
+	tcsetattr(term->fd, TCSANOW, term->term_cpy);
 	tputs(tgetstr("cl", NULL), 1, my_putchar);
 	tputs(tgetstr("ve", NULL), 1, my_putchar);
 	tputs(tgetstr("te", NULL), 1, my_putchar);
 	free_list(term);
+	if (close(term->fd) < 0)
+		ft_putendl_fd("Close error", 2);
 	exit(0);
 }
 

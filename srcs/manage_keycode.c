@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/10 16:23:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 15:54:18 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 17:41:00 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void		validate_selection(t_term *term)
 	}
 	ft_putendl_fd(term->ret_key[i], 1);
 	free_list(term);
-	exit(0);
 }
 
 void			manage_keycodes(t_term *term, char buffer[5])
@@ -93,5 +92,10 @@ void			manage_keycodes(t_term *term, char buffer[5])
 		}
 	}
 	else if (BUFFER == RET_KEY)
+	{
 		validate_selection(term);
+		if (close(term->fd) < 0)
+			ft_putendl_fd("Close error", 2);
+		exit(0);
+	}
 }

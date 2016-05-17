@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/04 11:21:46 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 15:50:33 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 16:33:50 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ int			init_term_data(t_term *term)
 		return (-1);
 	if (tgetent(NULL, getenv("TERM")) < 1)
 		return (-1);
-	if (tcgetattr(0, term_s) == -1)
+	if (tcgetattr(term->fd, term_s) == -1)
 		return (-1);
-	if (tcgetattr(0, term_cpy) == -1)
+	if (tcgetattr(term->fd, term_cpy) == -1)
 		return (-1);
 	term->term_s = term_s;
 	term->term_cpy = term_cpy;
 	term->term_s->c_lflag &= ~(ECHO | ICANON);
 	term->term_s->c_cc[VMIN] = 1;
 	term->term_s->c_cc[VTIME] = 0;
-	if (tcsetattr(0, 0, term->term_s) == -1)
+	if (tcsetattr(term->fd, 0, term->term_s) == -1)
 		return (-1);
 	tputs(tgetstr("vi", NULL), 1, my_putchar);
 	return (0);
@@ -58,7 +58,7 @@ int			init_term_data(t_term *term)
 int			reset_term_data(t_term *term)
 {
 	term->term_s->c_lflag |= (ICANON | ECHO);
-	if (tcsetattr(0, 0, term->term_s) == -1)
+	if (tcsetattr(term->fd, 0, term->term_s) == -1)
 		return (-1);
 	tputs(tgetstr("te", NULL), 1, my_putchar);
 	tputs(tgetstr("ve", NULL), 1, my_putchar);

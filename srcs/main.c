@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 16:04:53 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 17:50:38 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,14 @@ static int		get_keycode(t_term *term)
 	ft_bzero(buffer, 5);
 	read(0, buffer, 4);
 	if (BUFFER == ESC_KEY)
+	{
+		if (reset_term_data(term) == -1)
+			return (-1);
+		if (close(term->fd) < 0)
+			ft_putendl_fd("Close error", 2);
+		free_list(term);
 		return (1);
+	}
 	manage_keycodes(term, buffer);
 	return (0);
 }
@@ -75,11 +82,12 @@ int				main(int ac, char **av)
 		ft_putendl_fd("Error: wrong usage", 2);
 		exit(1);
 	}
+	term->fd = open(ttyname(0), O_RDWR);
+	if (term->fd == -1)
+		return (-1);
 	if (init_term_data(term) == -1)
 		return (-1);
 	if (ac > 1)
 		ft_select(av + 1, term);
-	if (reset_term_data(term) == -1)
-		return (-1);
 	return (0);
 }
