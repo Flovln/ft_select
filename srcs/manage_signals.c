@@ -6,13 +6,13 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 13:35:32 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 14:15:16 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_select.h"
 
-void		do_sig_stop()
+static void	do_sig_stop()
 {
 	char	cp[2];
 	t_term	*term;
@@ -28,7 +28,7 @@ void		do_sig_stop()
 	ioctl(0, TIOCSTI, cp);
 }
 
-void		do_sig_cont()
+static void	do_sig_cont()
 {
 	char	*term_name;
 	t_term	*term;
@@ -43,7 +43,7 @@ void		do_sig_cont()
 	print_list(term);
 }
 
-void		do_sig_int()
+static void	do_sig_int()
 {
 	t_term *term;
 
@@ -56,10 +56,20 @@ void		do_sig_int()
 	exit(0);
 }
 
+static void	resize_win()
+{
+	t_term *term;
+
+	term = init_struct();
+	tputs(tgetstr("cl", NULL), 1, my_putchar);
+	print_list(term);
+}
+
 void        manage_signals(void)
 {
 	signal(SIGTSTP, do_sig_stop); //ctr -z
 	signal(SIGCONT, do_sig_cont); //reprise du processus -> fg
 	signal(SIGINT, do_sig_int); //ctr -c
 	signal(SIGQUIT, do_sig_int); //ctrl -\ -> kill
+	signal(SIGWINCH, resize_win); //window size
 }

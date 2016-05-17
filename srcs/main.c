@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 12:24:16 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/17 14:19:47 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			print_list(t_term *term)
 	get_size_info(term);
 	while (tmp)
 	{
-//		display_columns(term, col_pos, i);
+		col_pos = display_columns(term, col_pos, i);
 		do_display(tmp);
 		tmp = tmp->next;
 		i++;
