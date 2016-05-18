@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/04 11:21:46 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 16:33:50 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/18 16:06:39 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_term		*init_struct(void)
 	term->ret_key = NULL;
 	term->col_nb = 0;
 	term->row_nb = 0;
+	term->fd = 0;
 	term->term_s = NULL;
 	term->term_cpy = NULL;
 	term->list = NULL;

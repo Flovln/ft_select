@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 18:28:18 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/18 16:30:34 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		check_win_size(t_term *term)
 	if (term->row_nb == 1)
 	{
 		tputs(tgetstr("cl", NULL), 1, my_putchar);
-		ft_putendl_fd("window size too small", 1);
+		ft_putendl_fd("window size too small", 0);
 		return (1);
 	}
 	nb_col = (term->elem_nb / (term->row_nb - 1));
@@ -30,7 +30,7 @@ static int		check_win_size(t_term *term)
 	if (((term->max_len + 2) * nb_col) > term->col_nb)
 	{
 		tputs(tgetstr("cl", NULL), 1, my_putchar);
-		ft_putendl_fd("window size too small", 1);
+		ft_putendl_fd("window size too small", 0);
 		return (1);
 	}
 	return (0);
