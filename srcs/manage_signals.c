@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:37:41 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 18:28:25 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/18 11:05:54 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void		manage_signals(void)
 	signal(SIGCONT, do_sig_cont);
 	signal(SIGINT, do_sig_int);
 	signal(SIGQUIT, do_sig_int);
+	signal(SIGTERM, do_sig_int);
 	signal(SIGWINCH, resize_win);
 }
