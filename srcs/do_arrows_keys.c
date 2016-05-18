@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/10 09:48:14 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 16:03:46 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/18 12:51:02 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void		move_left(t_term *term)
 	int		len;
 
 	tmp = term->list;
-	len = term->win.ws_row - 2;
+	len = term->win.ws_row - 1;
 	while (tmp->flag != 1)
 		tmp = tmp->next;
 	tmp->flag = 0;
@@ -73,7 +73,7 @@ static void		move_right(t_term *term)
 
 	tmp = term->list;
 	i = 0;
-	len = term->win.ws_row - 2;
+	len = term->win.ws_row - 1;
 	while (tmp->flag != 1)
 		tmp = tmp->next;
 	tmp->flag = 0;
