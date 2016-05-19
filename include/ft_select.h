@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:00:16 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/17 18:35:19 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/19 10:43:48 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <term.h>
 # include <termios.h>
 # include <termcap.h>
-# include <curses.h>
 # include <signal.h>
 # include <sys/ioctl.h>
 

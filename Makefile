@@ -6,7 +6,7 @@
 #    By: fviolin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/03 10:01:11 by fviolin           #+#    #+#              #
-#    Updated: 2016/05/03 11:42:20 by fviolin          ###   ########.fr        #
+#    Updated: 2016/05/19 10:50:07 by fviolin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIB = -L./libft -lft
 
 $(NAME): $(OBJ)
 	make -C ./libft
-	gcc $(FLAGS) -lncurses $(OBJ) $(LIB) -o $(NAME)
+	gcc $(FLAGS) -ltermcap $(OBJ) $(LIB) -o $(NAME)
 
 all: $(NAME)
 
