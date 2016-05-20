@@ -6,7 +6,7 @@
 /*   By: fviolin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 10:05:35 by fviolin           #+#    #+#             */
-/*   Updated: 2016/05/18 16:30:34 by fviolin          ###   ########.fr       */
+/*   Updated: 2016/05/20 10:39:15 by fviolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static int		ft_select(char **av, t_term *term)
 int				main(int ac, char **av)
 {
 	t_term	*term;
+	char	*tty_name;
 
 	term = init_struct();
 	manage_signals();
@@ -108,7 +109,9 @@ int				main(int ac, char **av)
 		ft_putendl_fd("Error: wrong usage", 2);
 		exit(1);
 	}
-	term->fd = open(ttyname(0), O_RDWR);
+	tty_name = ttyname(0);
+	term->fd = open(tty_name, O_RDWR);
+	free(tty_name);
 	if (term->fd == -1)
 		return (-1);
 	if (init_term_data(term) == -1)
